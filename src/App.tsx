@@ -19,7 +19,7 @@ const App: React.FC = () => {
     let renderer: THREE.WebGLRenderer | null = null;
     let currentModel: THREE.Group | null = null;
 
-    navigator.mediaDevices.getUserMedia({ video: true })
+    navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
       .then(stream => {
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
@@ -97,24 +97,24 @@ const App: React.FC = () => {
 
   return (
     <div className="relative w-full h-screen">
-    <video ref={videoRef} autoPlay className="absolute top-0 left-0 w-full h-full object-cover" />
-    <div ref={containerRef} className="absolute top-0 left-0 w-full h-full" />
-    <div className="absolute top-0 right-0 p-4 bg-transparent rounded-lg shadow-lg">
-      <h1 className="text-2xl font-bold mb-4 text-red-500 animate-pulse">Una bestia! Cocktails</h1>
-      <ul>
-        {cocktails.map((cocktail, index) => (
-          <li key={index} className="mb-2">
-            <button 
-              onClick={() => setSelectedCocktail(cocktail.modelPath)}
-              className="text-xl font-semibold text-black hover:text-red-500 transition duration-300 ease-in-out"
-            >
-              {cocktail.name}
-            </button>
-          </li>
-        ))}
-      </ul>
+      <video ref={videoRef} autoPlay className="absolute top-0 left-0 w-full h-full object-cover" />
+      <div ref={containerRef} className="absolute top-0 left-0 w-full h-full" />
+      <div className="absolute top-0 right-0 p-4 bg-transparent rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold mb-4 text-red-500 animate-pulse">Una bestia! Cocktails</h1>
+        <ul>
+          {cocktails.map((cocktail, index) => (
+            <li key={index} className="mb-2">
+              <button 
+                onClick={() => setSelectedCocktail(cocktail.modelPath)}
+                className="text-xl font-semibold text-black hover:text-red-500 transition duration-300 ease-in-out"
+              >
+                {cocktail.name}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
-  </div>
   );
 };
 
