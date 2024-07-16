@@ -4,7 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/Addons.js';
 import { OrbitControls } from 'three/examples/jsm/Addons.js';
 
 const cocktails = [
-  { name: 'Cóctel demo 1', modelPath: '/src/assets/prueba.glb' },
+  { name: 'Cóctel demo 1', modelPath: 'public/prueba.glb' },
   { name: 'Cóctel demo 2', modelPath: '/assets/demo2.glb' },
   { name: 'Cóctel demo 3', modelPath: '/assets/demo3.glb' },
   // Agrega más cócteles según sea necesario
