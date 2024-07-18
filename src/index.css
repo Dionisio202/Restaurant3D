@@ -7,3 +7,13 @@ html, body, #root {
   margin: 0;
   padding: 0;
 }
+.custom-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" width="292.4" height="292.4" viewBox="0 0 292.4 292.4"><path fill="%23000000" d="M287 69.2L168 188.1l-119-119c-6.3-6.3-16.4-6.3-22.6 0s-6.3 16.4 0 22.6l128 128c3.1 3.1 7.2 4.7 11.3 4.7s8.2-1.6 11.3-4.7l128-128c6.3-6.3 6.3-16.4 0-22.6s-16.3-6.3-22.6 0z"/></svg>') no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 2.5rem;
+  background-color: #A08246;
+}

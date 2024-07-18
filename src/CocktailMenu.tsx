@@ -47,7 +47,7 @@ const CocktailMenu: React.FC = () => {
       directionalLight.position.set(0, 10, 10);
       scene.add(directionalLight);
 
-      camera.position.z = 5;
+      camera.position.z = 3;
 
       const controls = new OrbitControls(camera, renderer.domElement);
       controls.enableDamping = true;
@@ -73,6 +73,13 @@ const CocktailMenu: React.FC = () => {
           scene.remove(currentModel);
         }
         currentModel = gltf.scene;
+
+        // Centrando el modelo
+        const box = new THREE.Box3().setFromObject(currentModel);
+        const center = box.getCenter(new THREE.Vector3());
+        currentModel.position.sub(center);
+
+        currentModel.scale.set(1.5, 1.5, 1.5); // Escalar el modelo 3D
         scene.add(currentModel);
       }, undefined, (error) => {
         console.error('Error loading GLTF model:', error);
@@ -99,7 +106,7 @@ const CocktailMenu: React.FC = () => {
   return (
     <div className="relative w-full h-screen">
       <video ref={videoRef} autoPlay className="absolute top-0 left-0 w-full h-full object-cover" />
-      <div ref={containerRef} className="absolute top-0 left-0 w-full h-full" />
+      <div ref={containerRef} className="absolute top-0 left-0 w-full h-full flex items-center justify-center" />
       <div className="absolute top-0 left-0 p-4 bg-transparent">
         <button
           onClick={() => navigate(-1)}
@@ -110,18 +117,20 @@ const CocktailMenu: React.FC = () => {
         <h1 className="w-full sm:w-64 text-xl sm:text-2xl font-semibold text-black py-2 px-4 rounded-full text-center transition duration-300 ease-in-out bg-[#A08246] mb-3">
           Menú cócteles
         </h1>
-        <ul className="flex flex-col items-center space-y-2">
-          {cocktails.map((cocktail, index) => (
-            <li key={index} className="mb-2">
-              <button 
-                onClick={() => setSelectedCocktail(cocktail.modelPath)}
-                className={`w-full sm:w-64 text-xl sm:text-2xl font-semibold text-black py-2 px-4 rounded-full text-center transition duration-300 ease-in-out ${selectedCocktail === cocktail.modelPath ? 'bg-blue-500' : 'bg-[#A08246]'}`}
-              >
-                {cocktail.name}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <div className="flex flex-col items-center space-y-2">
+  <select
+    onChange={(e) => setSelectedCocktail(e.target.value)}
+    className="w-full sm:w-64 text-xl sm:text-2xl font-semibold text-black py-2 px-4 rounded-full text-center transition duration-300 ease-in-out bg-[#A08246] p-4 custom-select"
+    value={selectedCocktail}
+  >
+    {cocktails.map((cocktail, index) => (
+      <option key={index} value={cocktail.modelPath} className="p-2">
+        {cocktail.name}
+      </option>
+    ))}
+  </select>
+</div>
+
       </div>
     </div>
   );
