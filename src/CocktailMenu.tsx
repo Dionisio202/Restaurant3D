@@ -107,13 +107,15 @@ const CocktailMenu: React.FC = () => {
         >
           Regresar
         </button>
-        <h1 className="w-64 text-xl sm:text-2xl font-semibold text-black py-2 px-4 rounded-full text-center transition duration-300 ease-in-out bg-[#A08246] mb-3">Menú cócteles</h1>
-        <ul>
+        <h1 className="w-full sm:w-64 text-xl sm:text-2xl font-semibold text-black py-2 px-4 rounded-full text-center transition duration-300 ease-in-out bg-[#A08246] mb-3">
+          Menú cócteles
+        </h1>
+        <ul className="flex flex-col items-center space-y-2">
           {cocktails.map((cocktail, index) => (
             <li key={index} className="mb-2">
               <button 
                 onClick={() => setSelectedCocktail(cocktail.modelPath)}
-                className={`w-64 text-xl sm:text-2xl font-semibold text-black py-2 px-4 rounded-full text-center transition duration-300 ease-in-out ${selectedCocktail === cocktail.modelPath ? 'bg-blue-500' : 'bg-[#A08246]'}`}
+                className={`w-full sm:w-64 text-xl sm:text-2xl font-semibold text-black py-2 px-4 rounded-full text-center transition duration-300 ease-in-out ${selectedCocktail === cocktail.modelPath ? 'bg-blue-500' : 'bg-[#A08246]'}`}
               >
                 {cocktail.name}
               </button>
